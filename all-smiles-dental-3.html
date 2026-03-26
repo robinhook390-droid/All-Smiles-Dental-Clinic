@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Smiles Dental Clinic – Dr. Preeti Soni</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --teal:#0d7a6f; --teal2:#0a5a52; --teal3:#e6f5f3;
+      --gold:#c8a84b; --dark:#0d1f1d; --cream:#f8f4ef;
+      --white:#ffffff; --grey:#6b7c7a;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--dark); overflow-x:hidden; }
+
+    /* TOP STRIP */
+    .top-strip { background:var(--dark); color:rgba(255,255,255,.7); font-size:.78rem;
+      padding:.45rem 5%; display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem; }
+    .top-strip a { color:var(--gold); text-decoration:none; }
+
+    /* NAV */
+    nav { position:sticky; top:0; z-index:100; background:var(--white);
+      display:flex; justify-content:space-between; align-items:center;
+      padding:.9rem 5%; box-shadow:0 2px 16px rgba(0,0,0,.08);
+      border-bottom:2px solid var(--teal3); }
+    .logo { display:flex; align-items:center; gap:.8rem; }
+    .logo-icon { width:44px; height:44px; border-radius:12px;
+      background:linear-gradient(135deg,var(--teal),var(--teal2));
+      display:flex; align-items:center; justify-content:center; }
+    .logo-text h1 { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:700; color:var(--dark); }
+    .logo-text span { font-size:.68rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--teal); display:block; }
+    nav ul { list-style:none; display:flex; gap:1.8rem; }
+    nav ul a { color:var(--dark); text-decoration:none; font-size:.88rem; font-weight:500; transition:color .2s; }
+    nav ul a:hover { color:var(--teal); }
+    .nav-cta { background:var(--teal); color:var(--white); padding:.55rem 1.4rem; border-radius:50px;
+      font-weight:600; font-size:.85rem; text-decoration:none; transition:background .2s, transform .2s; }
+    .nav-cta:hover { background:var(--teal2); transform:translateY(-1px); }
+
+    /* HERO */
+    .hero { min-height:92vh; background:linear-gradient(140deg,var(--dark) 0%,#0d3d38 50%,var(--teal) 100%);
+      display:flex; align-items:center; padding:80px 5% 60px; position:relative; overflow:hidden; }
+    .hero::before { content:''; position:absolute; inset:0;
+      background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); }
+    .hero-inner { position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; width:100%; }
+    .hero-badge { display:inline-flex; align-items:center; gap:.5rem;
+      background:rgba(200,168,75,.15); border:1px solid rgba(200,168,75,.4);
+      color:var(--gold); padding:.4rem 1rem; border-radius:50px;
+      font-size:.78rem; letter-spacing:1px; text-transform:uppercase; margin-bottom:1.4rem;
+      animation:fadeUp .6s ease both; }
+    .hero h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.4rem,4.5vw,3.8rem);
+      color:var(--white); line-height:1.15; margin-bottom:1rem; animation:fadeUp .6s .1s ease both; }
+    .hero h2 em { color:var(--gold); font-style:italic; }
+    .hero-desc { color:rgba(255,255,255,.75); font-size:1rem; line-height:1.75; margin-bottom:2rem; animation:fadeUp .6s .2s ease both; }
+    .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; animation:fadeUp .6s .3s ease both; }
+    .btn-gold { background:var(--gold); color:var(--dark); padding:.85rem 2rem; border-radius:50px;
+      font-weight:700; text-decoration:none; font-size:.92rem;
+      transition:transform .2s,box-shadow .2s; display:inline-flex; align-items:center; gap:.5rem; }
+    .btn-gold:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(200,168,75,.45); }
+    .btn-ghost { border:2px solid rgba(255,255,255,.35); color:var(--white);
+      padding:.85rem 2rem; border-radius:50px; font-weight:500; text-decoration:none; font-size:.92rem;
+      transition:background .2s,border-color .2s; }
+    .btn-ghost:hover { background:rgba(255,255,255,.1); border-color:white; }
+    .hero-stats { display:flex; gap:2rem; margin-top:2.5rem; animation:fadeUp .6s .4s ease both; }
+    .stat { border-left:2px solid var(--gold); padding-left:1rem; }
+    .stat-num { font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--white); font-weight:700; }
+    .stat-lbl { font-size:.72rem; color:rgba(255,255,255,.55); text-transform:uppercase; letter-spacing:1px; }
+    .hero-card { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12);
+      border-radius:24px; padding:2rem; backdrop-filter:blur(12px); animation:fadeUp .6s .3s ease both; }
+    .hero-card-img { width:100%; aspect-ratio:4/3; border-radius:14px; overflow:hidden; margin-bottom:1.4rem; }
+    .hero-card-img img { width:100%; height:100%; object-fit:cover; }
+    .doctor-info { display:flex; align-items:center; gap:1rem; }
+    .doctor-avatar { width:52px; height:52px; border-radius:50%;
+      background:linear-gradient(135deg,var(--teal),var(--gold));
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Cormorant Garamond',serif; color:white; font-size:1.3rem; font-weight:700; flex-shrink:0; }
+    .doctor-details h4 { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:white; font-weight:600; }
+    .doctor-details p { font-size:.78rem; color:rgba(255,255,255,.6); margin-top:2px; }
+    .rating-row { display:flex; align-items:center; gap:.4rem; margin-top:.3rem; }
+    .stars-gold { color:var(--gold); font-size:.85rem; }
+    .rating-text { font-size:.75rem; color:rgba(255,255,255,.6); }
+
+    /* SECTIONS */
+    section { padding:90px 5%; }
+    .section-tag { display:inline-block; background:var(--teal3); color:var(--teal);
+      padding:.3rem .9rem; border-radius:50px; font-size:.74rem; letter-spacing:1.5px;
+      text-transform:uppercase; font-weight:600; margin-bottom:.9rem; }
+    .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(1.9rem,3.5vw,2.8rem);
+      line-height:1.2; color:var(--dark); margin-bottom:1rem; }
+    .section-sub { color:var(--grey); font-size:.98rem; line-height:1.75; max-width:560px; }
+
+    /* SERVICES */
+    .services { background:var(--white); }
+    .services-header { text-align:center; margin-bottom:3.5rem; }
+    .services-header .section-sub { margin:0 auto; }
+    .services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.4rem; }
+    .service-card { background:var(--cream); border-radius:20px; padding:1.8rem;
+      border:1px solid rgba(0,0,0,.06); transition:transform .3s,box-shadow .3s; position:relative; overflow:hidden; }
+    .service-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg,var(--teal),var(--gold)); transform:scaleX(0); transform-origin:left; transition:transform .3s; }
+    .service-card:hover { transform:translateY(-5px); box-shadow:0 14px 36px rgba(13,122,111,.12); }
+    .service-card:hover::after { transform:scaleX(1); }
+    .service-icon { width:50px; height:50px; border-radius:12px;
+      background:linear-gradient(135deg,var(--teal),#0ea292);
+      display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:1.1rem; }
+    .service-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.15rem; margin-bottom:.4rem; }
+    .service-card p { color:var(--grey); font-size:.86rem; line-height:1.65; }
+
+    /* ABOUT */
+    .about { background:var(--cream); }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+    .about-img-wrap { position:relative; }
+    .about-img-main { width:100%; aspect-ratio:3/4; border-radius:24px; overflow:hidden;
+      box-shadow:0 24px 60px rgba(0,0,0,.15); }
+    .about-img-main img { width:100%; height:100%; object-fit:cover; }
+    .about-badge { position:absolute; bottom:-20px; right:-20px; background:var(--teal);
+      color:white; border-radius:20px; padding:1.2rem 1.5rem; text-align:center;
+      box-shadow:0 10px 30px rgba(13,122,111,.4); }
+    .about-badge .num { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:700; line-height:1; }
+    .about-badge .lbl { font-size:.68rem; letter-spacing:1px; text-transform:uppercase; opacity:.8; }
+    .about-text .section-sub { margin-bottom:1.5rem; }
+    .credentials { display:flex; flex-direction:column; gap:.8rem; margin-top:1.5rem; }
+    .credential { display:flex; align-items:center; gap:.9rem; background:var(--white);
+      border-radius:12px; padding:.9rem 1.1rem; border:1px solid rgba(0,0,0,.06); }
+    .cred-icon { width:38px; height:38px; border-radius:10px; background:var(--teal3); color:var(--teal);
+      display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+    .cred-text { font-size:.86rem; font-weight:500; color:var(--dark); }
+    .cred-sub { font-size:.76rem; color:var(--grey); margin-top:1px; }
+
+    /* GALLERY */
+    .gallery { background:var(--white); }
+    .gallery-header { text-align:center; margin-bottom:3rem; }
+    .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+    .gallery-item { border-radius:16px; overflow:hidden; position:relative; transition:transform .3s,box-shadow .3s; }
+    .gallery-item:first-child { grid-column:1/3; }
+    .gallery-item:hover { transform:scale(1.02); box-shadow:0 14px 36px rgba(0,0,0,.15); }
+    .gallery-item img { width:100%; height:220px; object-fit:cover; display:block; transition:transform .4s; }
+    .gallery-item:first-child img { height:280px; }
+    .gallery-item:hover img { transform:scale(1.06); }
+    .gallery-overlay { position:absolute; inset:0;
+      background:linear-gradient(to top,rgba(13,122,111,.65) 0%,transparent 55%);
+      opacity:0; transition:opacity .3s; display:flex; align-items:flex-end; padding:1rem 1.2rem; }
+    .gallery-item:hover .gallery-overlay { opacity:1; }
+    .gallery-overlay span { color:white; font-weight:600; font-size:.85rem; }
+
+    /* WHY US */
+    .why { background:linear-gradient(140deg,var(--dark) 0%,#0d3d38 100%); color:var(--white); }
+    .why-header { text-align:center; margin-bottom:3.5rem; }
+    .why-header .section-title { color:var(--white); }
+    .why-header .section-sub { color:rgba(255,255,255,.65); margin:0 auto; }
+    .why-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.4rem; }
+    .why-card { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+      border-radius:20px; padding:1.8rem; transition:background .3s,transform .3s; }
+    .why-card:hover { background:rgba(255,255,255,.1); transform:translateY(-4px); }
+    .why-icon { width:50px; height:50px; border-radius:12px;
+      background:rgba(200,168,75,.15); border:1px solid rgba(200,168,75,.3);
+      display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:1rem; }
+    .why-card h3 { font-size:1rem; font-weight:600; color:white; margin-bottom:.5rem; }
+    .why-card p { font-size:.84rem; color:rgba(255,255,255,.6); line-height:1.65; }
+
+    /* TESTIMONIALS */
+    .testimonials { background:var(--cream); }
+    .testi-header { text-align:center; margin-bottom:3.5rem; }
+    .testi-header .section-sub { margin:0 auto; }
+    .testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.4rem; }
+    .testi-card { background:var(--white); border-radius:20px; padding:1.8rem;
+      border:1px solid rgba(0,0,0,.06); transition:box-shadow .3s; }
+    .testi-card:hover { box-shadow:0 12px 36px rgba(0,0,0,.08); }
+    .testi-stars { color:var(--gold); font-size:1rem; margin-bottom:.9rem; }
+    .testi-card blockquote { color:var(--grey); font-size:.9rem; line-height:1.72; font-style:italic; margin-bottom:1.2rem; }
+    .testi-author { display:flex; align-items:center; gap:.8rem; }
+    .testi-avatar { width:42px; height:42px; border-radius:50%;
+      background:linear-gradient(135deg,var(--teal),var(--gold));
+      display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:.88rem; }
+    .testi-name { font-weight:600; font-size:.88rem; }
+    .testi-loc { color:var(--grey); font-size:.75rem; }
+
+    /* CTA */
+    .cta-section { background:var(--white); text-align:center; padding:80px 5%; }
+    .cta-inner { max-width:640px; margin:0 auto;
+      background:linear-gradient(140deg,var(--dark),var(--teal));
+      border-radius:28px; padding:3.5rem 2.5rem; }
+    .cta-inner .section-title { color:var(--white); }
+    .cta-inner p { color:rgba(255,255,255,.72); margin:1rem 0 2rem; font-size:.98rem; line-height:1.75; }
+
+    /* MAP */
+    #map-section { padding:0; background:var(--dark); }
+    .map-wrap { width:100%; height:480px; }
+    .map-wrap iframe { width:100%; height:100%; border:none; display:block; }
+    .map-bar { background:var(--dark); padding:1.6rem 5%;
+      display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; }
+    .map-address { color:rgba(255,255,255,.8); font-size:.9rem; line-height:1.7; }
+    .map-address strong { color:white; display:block; margin-bottom:.2rem; }
+    .map-open-btn { background:var(--teal); color:white; padding:.7rem 1.8rem;
+      border-radius:50px; font-weight:600; font-size:.88rem; text-decoration:none; white-space:nowrap; }
+    .map-open-btn:hover { background:var(--teal2); }
+
+    /* FOOTER */
+    footer { background:#08100f; color:rgba(255,255,255,.5); padding:2rem 5%; text-align:center; }
+    footer .footer-name { font-family:'Cormorant Garamond',serif; font-size:1.15rem;
+      color:rgba(255,255,255,.85); margin-bottom:.4rem; }
+    footer p { font-size:.8rem; }
+    footer a { color:var(--gold); text-decoration:none; }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+    @media(max-width:860px) {
+      nav ul { display:none; }
+      .hero-inner { grid-template-columns:1fr; }
+      .hero-card { display:none; }
+      .about-grid { grid-template-columns:1fr; }
+      .about-badge { right:10px; }
+      .gallery-grid { grid-template-columns:1fr 1fr; }
+      .gallery-item:first-child { grid-column:1/3; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP STRIP -->
+<div class="top-strip">
+  <span>📍 Karawal Nagar, New Delhi – 110090</span>
+  <span>📞 <a href="tel:07011687015">07011 687015</a> &nbsp;|&nbsp; 🕐 Opens 9 AM (Mon–Sat)</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-icon">
+      <svg width="26" height="26" viewBox="0 0 36 36" fill="none">
+        <path d="M11 16c0-3.9 3.1-7 7-7s7 3.1 7 7c0 2.6-1.3 4.9-3.1 6.2l-.9 6.3H15l-.9-6.3C12.3 20.9 11 18.6 11 16z" fill="rgba(255,255,255,0.9)"/>
+        <path d="M15.5 16h5M18 12.5v7" stroke="#0d7a6f" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <h1>All Smiles Dental Clinic</h1>
+      <span>Dr. Preeti Soni · BDS MIDA</span>
+    </div>
+  </div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:07011687015" class="nav-cta">📞 Call Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">⭐ 5.0 Rating · 21 Reviews</div>
+      <h2>Your Perfect Smile<br/>Starts <em>Right Here</em></h2>
+      <p class="hero-desc">All Smiles Dental Clinic in Karawal Nagar, New Delhi offers world-class dental care — from implants to cosmetic dentistry — under the expert guidance of Dr. Preeti Soni, BDS MIDA.</p>
+      <div class="hero-btns">
+        <a href="tel:07011687015" class="btn-gold">📞 Book Appointment</a>
+        <a href="#services" class="btn-ghost">Explore Services</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">5.0★</div><div class="stat-lbl">Google Rating</div></div>
+        <div class="stat"><div class="stat-num">21+</div><div class="stat-lbl">Reviews</div></div>
+        <div class="stat"><div class="stat-num">7+</div><div class="stat-lbl">Specialities</div></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-img">
+        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=700&q=80" alt="Dental Clinic"/>
+      </div>
+      <div class="doctor-info">
+        <div class="doctor-avatar">PS</div>
+        <div class="doctor-details">
+          <h4>Dr. Preeti Soni</h4>
+          <p>BDS MIDA · Dental Specialist</p>
+          <div class="rating-row">
+            <span class="stars-gold">★★★★★</span>
+            <span class="rating-text">5.0 / 5.0 · 21 Reviews</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="section-tag">Our Services</div>
+    <h2 class="section-title">What We Specialize In</h2>
+    <p class="section-sub">Comprehensive dental care using the latest technology and techniques for your complete oral health.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🦷</div>
+      <h3>Dental Implants</h3>
+      <p>Permanent replacement for missing teeth using titanium implants that look and function exactly like natural teeth.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏥</div>
+      <h3>Dental Surgeries</h3>
+      <p>Expert oral surgeries performed with precision — tooth extractions, bone grafts, and complex procedures.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💉</div>
+      <h3>Sedation Dentistry</h3>
+      <p>Anxiety-free dental care using safe sedation techniques for a comfortable, stress-free experience.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔬</div>
+      <h3>General Dentistry</h3>
+      <p>Complete routine checkups, cleanings, fillings, and preventive care for the whole family.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <h3>Cosmetic Dentistry</h3>
+      <p>Smile makeovers with teeth whitening, veneers, bonding, and complete aesthetic smile design.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">😁</div>
+      <h3>Orthodontic Treatment</h3>
+      <p>Braces, clear aligners, and retainers for perfectly aligned, beautiful teeth at any age.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛡️</div>
+      <h3>Preventive Dentistry</h3>
+      <p>Sealants, fluoride treatments, and education to keep your teeth healthy for a lifetime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <div class="about-img-main">
+        <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=600&q=80" alt="Dental Treatment"/>
+      </div>
+      <div class="about-badge">
+        <div class="num">5.0★</div>
+        <div class="lbl">Google Rating</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-tag">About the Doctor</div>
+      <h2 class="section-title">Dr. Preeti Soni<br/>BDS · MIDA</h2>
+      <p class="section-sub">Dr. Preeti Soni is a highly qualified dental specialist with expertise across implantology, oral surgery, and cosmetic dentistry. She brings a patient-first philosophy to every treatment at All Smiles Dental Clinic, Karawal Nagar.</p>
+      <div class="credentials">
+        <div class="credential">
+          <div class="cred-icon">🎓</div>
+          <div><div class="cred-text">BDS – Bachelor of Dental Surgery</div><div class="cred-sub">Qualified Dental Surgeon</div></div>
+        </div>
+        <div class="credential">
+          <div class="cred-icon">🏅</div>
+          <div><div class="cred-text">MIDA – Member, Indian Dental Association</div><div class="cred-sub">Registered & Certified Practitioner</div></div>
+        </div>
+        <div class="credential">
+          <div class="cred-icon">⭐</div>
+          <div><div class="cred-text">5.0 Star Rating on Google</div><div class="cred-sub">21 Verified Patient Reviews</div></div>
+        </div>
+        <div class="credential">
+          <div class="cred-icon">📍</div>
+          <div><div class="cred-text">Located in Karawal Nagar, New Delhi</div><div class="cred-sub">Near Vrinda Restaurant, Sadatpur</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-header">
+    <div class="section-tag">Our Clinic</div>
+    <h2 class="section-title">Inside All Smiles</h2>
+    <p class="section-sub" style="margin:0 auto">A clean, modern, and welcoming space designed entirely for your comfort.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80" alt="Clinic Interior"/>
+      <div class="gallery-overlay"><span>🏥 Modern Clinic Setup</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=500&q=80" alt="Equipment"/>
+      <div class="gallery-overlay"><span>⚡ Advanced Equipment</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=500&q=80" alt="Whitening"/>
+      <div class="gallery-overlay"><span>✨ Teeth Whitening</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=500&q=80" alt="Smile"/>
+      <div class="gallery-overlay"><span>😁 Beautiful Results</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why">
+  <div class="why-header">
+    <div class="section-tag" style="background:rgba(200,168,75,.15);color:var(--gold)">Why Choose Us</div>
+    <h2 class="section-title">Why Patients Trust Us</h2>
+    <p class="section-sub">We combine expertise, technology, and genuine care to deliver exceptional dental experiences.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon">🎓</div><h3>Expert Specialist</h3><p>Dr. Preeti Soni is a qualified BDS MIDA professional with years of hands-on clinical experience.</p></div>
+    <div class="why-card"><div class="why-icon">😴</div><h3>Pain-Free Treatments</h3><p>We offer sedation dentistry so even the most anxious patients can receive comfortable care.</p></div>
+    <div class="why-card"><div class="why-icon">⭐</div><h3>5-Star Rated</h3><p>21 verified Google reviews and a perfect 5.0 star rating from our happy patients.</p></div>
+    <div class="why-card"><div class="why-icon">🧼</div><h3>Hygienic & Safe</h3><p>Fully sterilized instruments and strict hygiene protocols maintained for every single patient.</p></div>
+    <div class="why-card"><div class="why-icon">💰</div><h3>Affordable Care</h3><p>High-quality dental treatment at fair, transparent prices with absolutely no hidden charges.</p></div>
+    <div class="why-card"><div class="why-icon">👨‍👩‍👧</div><h3>Family-Friendly</h3><p>We welcome patients of all ages — children, adults, and seniors — in a warm, caring environment.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testi-header">
+    <div class="section-tag">Patient Reviews</div>
+    <h2 class="section-title">What Our Patients Say</h2>
+    <p class="section-sub" style="margin:0 auto">Real experiences from our happy patients in Karawal Nagar and beyond.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <blockquote>"Dr. Preeti Soni is absolutely amazing. My dental implant procedure was smooth and painless. The clinic is very clean and professional."</blockquote>
+      <div class="testi-author"><div class="testi-avatar">R</div><div><div class="testi-name">Rakesh Sharma</div><div class="testi-loc">Karawal Nagar, Delhi</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <blockquote>"Best dental clinic in the area. Doctor is very gentle and explains everything clearly. My braces treatment is going great!"</blockquote>
+      <div class="testi-author"><div class="testi-avatar">P</div><div><div class="testi-name">Priya Verma</div><div class="testi-loc">Sadatpur, Delhi</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <blockquote>"I was terrified of dentists but the sedation option here made everything easy. Highly recommend All Smiles to everyone!"</blockquote>
+      <div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Amit Gupta</div><div class="testi-loc">New Delhi</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <h2 class="section-title">Ready for a Healthier Smile?</h2>
+    <p>Don't delay your dental health. Call us today to book your appointment with Dr. Preeti Soni.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="tel:07011687015" class="btn-gold">📞 07011 687015</a>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section id="map-section">
+  <div class="map-wrap">
+    <iframe src="https://maps.google.com/maps?q=F-1+Gali+No+6+near+Vrinda+Restaurant+West+Sadatpur+Karawal+Nagar+New+Delhi+110090&z=16&output=embed"
+      allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  <div class="map-bar">
+    <div class="map-address">
+      <strong>All Smiles Dental Clinic</strong>
+      📍 F-1, Gali No. 6, near Vrinda Restaurant, West Sadatpur Extn, Block A, Sadatpur, Karawal Nagar, New Delhi – 110090
+    </div>
+    <a href="https://maps.google.com/maps?q=F-1+Gali+No+6+near+Vrinda+Restaurant+West+Sadatpur+Karawal+Nagar+New+Delhi+110090" target="_blank" class="map-open-btn">🗺️ Open in Google Maps</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">All Smiles Dental Clinic – Dr. Preeti Soni (BDS MIDA)</div>
+  <p>📞 <a href="tel:07011687015">07011 687015</a> &nbsp;|&nbsp; © 2025 All Smiles Dental Clinic. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
